@@ -10,5 +10,5 @@ class CharityProject(UnionBase):
     def __repr__(self):
         return (
             f'Благотварительный проект {self.name} на сумму {self.full_amount}'
-            # f'открыт {self.create_date}, собрано {self.invested_amount}'
+            f'открыт {self.create_date}, собрано {self.invested_amount}'
         )

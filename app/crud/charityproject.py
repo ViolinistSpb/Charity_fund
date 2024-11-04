@@ -1,12 +1,11 @@
-from datetime import datetime
 from typing import Optional
 
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from .base_investment import base_investmemt
 from app.crud.base import CRUDBase
 from app.models import CharityProject, Donation
-from .base_investment import base_investmemt
 
 
 class CRUDCharityproject(CRUDBase):

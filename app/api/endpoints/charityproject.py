@@ -47,11 +47,11 @@ async def partially_update_charityproject(
     session: AsyncSession = Depends(get_async_session),
 ):
     project = await check_project_exists(project_id, session)
-    await check_project_is_close(project_id, session)
-    if project.name is not None:
+    await check_project_is_close(project)
+    if obj_in.name is not None:
         await check_name_duplicate(obj_in.name, session)
-    if project.full_amount is not None:
-        await check_new_full_amount_is_higher(project_id, obj_in, session)
+    if obj_in.full_amount is not None:
+        await check_new_full_amount_is_higher(project, obj_in)
 
     project = await charityproject_crud.update(project, obj_in, session)
     return project
@@ -68,8 +68,8 @@ async def remove_project(
     session: AsyncSession = Depends(get_async_session),
 ):
     project = await check_project_exists(project_id, session)
-    await check_project_is_close(project_id, session)
-    await check_invested_amount_is_zero(project_id, session)
+    await check_project_is_close(project)
+    await check_invested_amount_is_zero(project)
     project = await charityproject_crud.remove(project, session)
     return project
 

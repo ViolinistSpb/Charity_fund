@@ -1,6 +1,10 @@
-value = 21.3
+from operator import lt
 
-if type(value) is float:
-    print('float')
+
+a = 21
+b = 22
+
+if lt(b, a):
+    print('true')
 else:
     print('no')
