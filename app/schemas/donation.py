@@ -3,10 +3,12 @@ from typing import Optional
 
 from pydantic import BaseModel, Field, PositiveInt, validator
 
+from app.constants import FULL_AMOUNT_EXAMPLE
+
 
 class DonationBase(BaseModel):
     comment: Optional[str] = Field(None)
-    full_amount: PositiveInt = Field(..., example=1000)
+    full_amount: PositiveInt = Field(..., example=FULL_AMOUNT_EXAMPLE)
 
     @validator('full_amount')
     def name_cannot_be_null(cls, value):

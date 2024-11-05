@@ -1,4 +1,4 @@
-Заполни меня![![Python](https://img.shields.io/badge/-Python_3.9.10-464646??style=flat-square&logo=Python)](https://www.python.org/downloads/)
+[![Python](https://img.shields.io/badge/-Python_3.9.10-464646??style=flat-square&logo=Python)](https://www.python.org/downloads/)
 
 #  Сервис QRKot
 
@@ -55,6 +55,29 @@
 
 ## Документация OPEN Api:
 http://127.0.0.1:8000/docs
+
+
+## Примеры запросов:
+http://127.0.0.1:8000/charity_project
+
+Example Value:
+{
+  "name": "string",
+  "description": "string",
+  "full_amount": 1000
+}
+
+Responses:
+{
+  "name": "string",
+  "description": "string",
+  "full_amount": 1000,
+  "id": 0,
+  "invested_amount": 0,
+  "fully_invested": true,
+  "create_date": "2024-11-05T11:05:29.459Z",
+  "close_date": "2024-11-05T11:05:29.459Z"
+}
 
 
 ### Авторы:

@@ -3,11 +3,18 @@ from typing import Optional
 
 from pydantic import BaseModel, Field, PositiveInt, validator, Extra
 
+from app.constants import (FULL_AMOUNT_EXAMPLE, MIN_NAME_LENGTH,
+                           MAX_NAME_LENGTH, MIN_DESCRIPTION_LENGTH)
+
 
 class CharityprojectBase(BaseModel):
-    name: Optional[str] = Field(None, min_length=1, max_length=100)
-    description: Optional[str] = Field(None, min_length=1)
-    full_amount: Optional[PositiveInt] = Field(None, example=1000)
+    name: Optional[str] = Field(
+        None, min_length=MIN_NAME_LENGTH, max_length=MAX_NAME_LENGTH
+    )
+    description: Optional[str] = Field(None, min_length=MIN_DESCRIPTION_LENGTH)
+    full_amount: Optional[PositiveInt] = Field(
+        None, example=FULL_AMOUNT_EXAMPLE
+    )
 
     @validator('name')
     def name_cannot_be_null(cls, value):
@@ -23,9 +30,11 @@ class CharityprojectBase(BaseModel):
 
 
 class CharityprojectCreate(CharityprojectBase):
-    name: str = Field(..., min_length=1, max_length=100)
-    description: str = Field(..., min_length=1)
-    full_amount: PositiveInt = Field(..., example=1000)
+    name: str = Field(
+        ..., min_length=MIN_NAME_LENGTH, max_length=MAX_NAME_LENGTH
+    )
+    description: str = Field(..., min_length=MIN_DESCRIPTION_LENGTH)
+    full_amount: PositiveInt = Field(..., example=FULL_AMOUNT_EXAMPLE)
 
     class Config:
         extra = Extra.forbid

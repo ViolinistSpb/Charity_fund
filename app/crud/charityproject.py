@@ -20,8 +20,7 @@ class CRUDCharityproject(CRUDBase):
                 CharityProject.name == project_name
             )
         )
-        db_project_id = db_project_id.scalars().first()
-        return db_project_id
+        return db_project_id.scalars().first()
 
     async def get_project_by_id(
         self,
@@ -33,8 +32,7 @@ class CRUDCharityproject(CRUDBase):
                 CharityProject.id == project_id
             )
         )
-        db_project = db_project.scalars().first()
-        return db_project
+        return db_project.scalars().first()
 
     async def distribution_free_donations(
         self,

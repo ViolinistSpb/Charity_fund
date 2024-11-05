@@ -53,8 +53,7 @@ async def partially_update_charityproject(
     if obj_in.full_amount is not None:
         await check_new_full_amount_is_higher(project, obj_in)
 
-    project = await charityproject_crud.update(project, obj_in, session)
-    return project
+    return await charityproject_crud.update(project, obj_in, session)
 
 
 @router.delete(
@@ -70,8 +69,7 @@ async def remove_project(
     project = await check_project_exists(project_id, session)
     await check_project_is_close(project)
     await check_invested_amount_is_zero(project)
-    project = await charityproject_crud.remove(project, session)
-    return project
+    return await charityproject_crud.remove(project, session)
 
 
 @router.get(
@@ -82,5 +80,4 @@ async def remove_project(
 async def get_all_projects(
     session: AsyncSession = Depends(get_async_session),
 ):
-    all_projects = await charityproject_crud.get_multi(session)
-    return all_projects
+    return await charityproject_crud.get_multi(session)
