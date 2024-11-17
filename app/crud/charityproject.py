@@ -1,6 +1,5 @@
 from typing import Optional
-
-from sqlalchemy import select
+from sqlalchemy import func, select, extract, desc, literal
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from .base_investment import base_investmemt
@@ -50,6 +49,25 @@ class CRUDCharityproject(CRUDBase):
 
         await session.commit()
         await session.refresh(project)
+
+    async def get_projects_by_completion_rate(
+        self,
+        session: AsyncSession,
+    ):
+        sec_diff = (extract('epoch', CharityProject.close_date) -
+                    extract('epoch', CharityProject.create_date))
+        query = select(
+            [CharityProject.name,
+             sec_diff.label('sec_diff'),
+             CharityProject.description]
+        )
+
+        all_closed_project = await session.execute(
+            query.where(
+                CharityProject.fully_invested == 1
+            ).order_by('sec_diff')
+        )
+        return all_closed_project.all()
 
 
 charityproject_crud = CRUDCharityproject(CharityProject)
