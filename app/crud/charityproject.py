@@ -1,5 +1,5 @@
 from typing import Optional
-from sqlalchemy import func, select, extract, desc, literal
+from sqlalchemy import select, extract
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from .base_investment import base_investmemt
